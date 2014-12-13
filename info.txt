@@ -1,0 +1,6 @@
+Idea: Fetcher. Analyzer. 
+1. Create two separate scripts, one to capture the tweets, the second one to analyze them.
+2. Fetcher: Python script to download a stream of random tweets , save all the data to mongo. 
+3. Analyzer: Try in python and in Mongo. We just need to compute measures with the data. Average number of followers... Then for the plots:
+	-	Import in matlab ONLY the data that we need 
+	- 	For that, query the data in mongo and export, or into a separate collection. 
