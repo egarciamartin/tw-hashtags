@@ -25,6 +25,7 @@ except :
 	sys.exit(0)
 
 TOT_HOURS = 24 # 1 day
+MIN = 12
 
 client = MongoClient()
 db = client.twscript
@@ -110,7 +111,7 @@ for hours in range(TOT_HOURS):
 	stream.statuses.sample()
 	for i in range(5):
 		print ("sleeping for 12 minutes, until: " + str(datetime.datetime.now() + datetime.timedelta(minutes= 12) ))
-		time.sleep(12)
+		time.sleep(MIN * 60)
 		updateUsers(str(i+2))
 
 
