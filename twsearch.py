@@ -24,7 +24,7 @@ except :
 	print "Exception: File missing some keys"
 	sys.exit(0)
 
-TOT_HOURS = 1 # 1 day
+TOT_HOURS = 24 # 1 day
 MIN = 12
 KW = ["#JeSuisCharlie", "#CharieHebdo"]
 
@@ -74,7 +74,7 @@ def processUsers(data):
 class MyStreamer(TwythonStreamer):
 	counter = 0
 	def on_success(self, data):
-		if(self.counter < 500):
+		if(self.counter < 6000):
 			if 'text' in data:
 				#print data ['user']['screen_name']
 				print data['text'].encode('utf-8')
