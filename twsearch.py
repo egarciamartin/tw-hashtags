@@ -24,8 +24,9 @@ except :
 	print "Exception: File missing some keys"
 	sys.exit(0)
 
-TOT_HOURS = 24 # 1 day
-MIN = 12
+# TOT_HOURS = 24 # 1 day
+# MIN = 12
+TOT_TW =  6000
 KW = ["#JeSuisCharlie", "#CharieHebdo"]
 
 client = MongoClient()
@@ -74,7 +75,7 @@ def processUsers(data):
 class MyStreamer(TwythonStreamer):
 	counter = 0
 	def on_success(self, data):
-		if(self.counter < 6000):
+		if(self.counter < TOT_TW):
 			if 'text' in data:
 				#print data ['user']['screen_name']
 				print data['text'].encode('utf-8')
@@ -94,14 +95,8 @@ twitter = createConnection()
 stream = MyStreamer(APP_KEY, APP_SECRET,
 					OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 
-# Procedure for picking users for one week:
-
-# IMPORTANT: This loop runs every hour (with the sleep in 12 min and 5 updates.)
-# We need to set the total number of hours: e.g.:24  , 1 day. 
-for hours in range(TOT_HOURS):
-	# 3k users per stream
-	# stream.statuses.sample()
-	stream.statuses.filter(track=KW)
+# Get tweets from the streaming API, filtered by the keyword KW. 
+stream.statuses.filter(track=KW)
 	
 
 
